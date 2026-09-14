@@ -54,8 +54,15 @@ function isValidPort(port) {
 
 // ======================== 文件清理 ========================
 
-const pathsToDelete = ['config.json', 'cert.pem', 'private.key'];
+function cleanupTmp() {
+  const tmpDir = path.resolve(ROOT, '.tmp');
+  if (fs.existsSync(tmpDir)) {
+    try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (e) { }
+  }
+}
+
 function cleanupFiles() {
+  const pathsToDelete = ['boot.log', 'config.json', 'cert.pem', 'private.key'];
   pathsToDelete.forEach(file => {
     const filePath = path.join(FILE_PATH, file);
     fs.unlink(filePath, () => {});
@@ -79,6 +86,10 @@ function cleanupFiles() {
     } catch (e) {
       log('Cleanup failed:', e.message);
     }
+  }
+  const tmpDir = path.resolve(ROOT, '.tmp');
+  if (fs.existsSync(tmpDir)) {
+    try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (e) { }
   }
 }
 
@@ -420,6 +431,7 @@ async function startServer() {
   await new Promise(r => setTimeout(r, 1000));
   log('web is running');
   if (cloudflaredService) log('bot is running');
+  cleanupTmp();
 
   // 启动 HTTP 服务器
   // startHttpServer();
