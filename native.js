@@ -12,9 +12,9 @@ const { execSync } = require('child_process');
 // ======================== 环境变量定义 ========================
 const UUID           = process.env.UUID              || '44df7d41-2147-42bd-b0d0-33cc1e3d5bb9';
 const ARGO_AUTH      = process.env.ARGO_AUTH         || 'eyJhIjoiOTM4MmRhZGEyMTM5NGZmNjVhMjg3YWE2ODhlNTQ3NGQiLCJ0IjoiMjY5NGQwYzEtZDRiNy00OGEwLTkwODEtNzZmZDhlMTM1OGNhIiwicyI6Ik9USXpNVEV4T0dVdE16WXdaaTAwTW1NMUxXRmxOR010TlRjMk1UUmxaVGxtT0RsaCJ9';         
-const ARGO_PORT      = Number(process.env.ARGO_PORT) || 5029;       
+const ARGO_PORT      = Number(process.env.ARGO_PORT) || 5006;       
 const S5_PORT        = process.env.S5_PORT           || '';         
-const HY2_PORT       = process.env.HY2_PORT          || '5029';         
+const HY2_PORT       = process.env.HY2_PORT          || '5006';         
 const PORT           = Number(process.env.PORT)      || 3000;       
 const FILE_PATH      = process.env.FILE_PATH         || '.npm';     
 const SHOW_LOG       = !['false', 'disable', 'no'].includes((process.env.SHOW_LOG || 'false').toLowerCase());
